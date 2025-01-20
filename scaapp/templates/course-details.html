@@ -1,0 +1,113 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block logout %}<a href="{% url 'scaapp:loginform' %}"> Logout</a>{% endblock logout %}
+{% block main %}
+{% block hero %}{% endblock hero %}
+
+ 
+<nav>
+  <ul>
+    {% comment %} <li><a href="{% url '' %}">Home</a></li> {% endcomment %}
+    {% if user.is_authenticated %}
+      <li><a href="{% url 'scaapp:logout' %}">Logout</a></li>
+    {% else %}
+      
+    {% endif %}
+  </ul>
+</nav>
+
+  <div class="breadcrumbs" data-aos="fade-in">
+    <div class="container">
+      <h2>{{ object.name }}</h2>
+      
+    </div>
+  </div>
+
+
+    <section id="course-details" class="course-details">
+      <div class="container" data-aos="fade-up">
+    
+        <div class="row">
+          <div class="col-lg-8">
+            <img src="{{object.image.url}}" class="img-fluid" alt="">
+            <h3>What they do?</h3>
+            <p>
+              {{ object.content }}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="career" class="career-detail">
+          <div class="container" data-aos="fade-up">
+              <div class="content">
+                <h3>Why this is a good career?</h3>
+                  <p>
+                    {{ object.content1 }}
+                  </p>
+              </div>
+            </div>        
+      </section>
+       
+      <section id="why-us" class="why-us">
+          <div class="container" data-aos="fade-up">
+            <div class="row">
+              <div class="col-lg-6 d-flex align-items-stretch">
+                <div class="content">
+                  <h3>What are the soft skills required for this career?</h3>
+                  <p>
+                    {{ object.content2 }}
+                  </p>
+                </div>
+              </div>
+              
+              <div class="col-lg-6 d-flex align-items-stretch">
+                <div class="content">
+                  <h3>What am I supposed to study in order to pursue this career?</h3>
+                  <p>
+                    {{ object.content3 }}
+                  </p>
+                </div>
+              </div>
+              </div>
+            </div>
+
+                
+          </div> 
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="fw-bolder" style="margin-top: -50px;">Have a Question?</h2>
+        <hr class="mb-5">
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <div class="rounded-3 p-5 border border-light-subtle shadow">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="email">
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Your Question:</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text"></textarea>
+
+                <div class="mt-3 mb-5">
+                        <button type="submit" class="btn btn-primary mb-3 float-end">Ask Question</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+{% endblock main %}
+
+  
+
+
+    

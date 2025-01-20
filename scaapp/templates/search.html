@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block hero %}
+{% endblock hero %}
+
+{% block main %}
+
+{% for career in careers %}
+    <div class="container d-flex justify-content-center align-items-center" style="margin-top:100px;">
+        <div class="card mt-3 mb-3 border border-primary-subtle shadow" style="max-width: 1000px; min-height: 200px;">
+            <a href="{{ career.get_absolute_url }}"> 
+                <div class="row g-0">
+                    <!-- image div -->
+                    <div class="col-md-4">
+                        <img src="{{career.image.url}}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body mt-4">
+                            <h5 class="card-title">{{ career.name }}</h5>
+                            <hr class="border border-dark">
+                            <p class="card-text">{{ career.content|truncatechars:300 }}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+{% endfor %}
+{% endblock main %}
